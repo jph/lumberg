@@ -138,6 +138,18 @@ module Lumberg
         request
       end
 
+      def create_user_session(options = {})
+        request = perform_request('create_user_session',
+          options.merge(
+            response_key: 'data',
+            :'api.version' => 1
+          )
+        )
+
+        request[:success] = !request[:params].empty?
+        request
+      end
+
       def add_ip(options = {})
         perform_request('addip', options.merge(response_key: 'addip'))
       end

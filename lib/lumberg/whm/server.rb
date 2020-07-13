@@ -138,6 +138,19 @@ module Lumberg
         request
       end
 
+      # Added by MI
+      def list_all_packages
+        request = perform_request('listpkgs', {
+          response_key: 'data',
+          want: 'all',
+          :'api.version' => 1
+        })
+
+        request[:success] = !request[:params].empty?
+        request
+      end
+
+      # Added by MI
       def create_user_session(options = {})
         request = perform_request('create_user_session',
           options.merge(
